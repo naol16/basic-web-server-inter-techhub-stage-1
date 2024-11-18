@@ -2,11 +2,13 @@ const express= require('express')
 const app= express()
 const port =process.env.port || 3412 ;
 app.get("/",(req,res)=>{
-    res.send("welcome");
+    res.status(400).send("bad request");
 })
+//name route
 app.get('/name',(req,res)=>{
-    res.send("Naol Lemessa Ayana");
+    res.status(200).send("Naol Lemessa Ayana");
 })
+//hobbey route
 app.get('/hobby',(req,res)=>{
     // my  hobbey object
     const funnymoment={
@@ -14,13 +16,20 @@ app.get('/hobby',(req,res)=>{
         football:["Arsenal","barcelona"],
         sport:["football","basketball"]
     }
-    res.json(funnymoment);
+    if (Object.keys(funnymoment).length===0){
+      res.status(400).json({error:'there is no hobby'})
+    }
+      
+    else{
+        res.status(200).json(funnymoment)
+    }  ;
 
 })
+//dream route
 app.get('/dream',(req,res)=>{
-    res.send("the only way out is through")
+    res.status(200).send("the only way out is through")
 })
-
+//listening
 app.listen(port,(err)=>{
     if (err){
         console.log("error");
