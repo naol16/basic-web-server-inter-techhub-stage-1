@@ -2,7 +2,7 @@ const express= require('express')
 const app= express()
 const port =process.env.port || 3412 ;
 app.get("/",(req,res)=>{
-    res.status(400).send("bad request");
+    res.status(200).send("first project");
 })
 //name route
 app.get('/name',(req,res)=>{
